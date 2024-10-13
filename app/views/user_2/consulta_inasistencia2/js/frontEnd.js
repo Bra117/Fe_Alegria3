@@ -1,0 +1,66 @@
+$(document).ready(function(){
+  $('#button2').on('click',function(){
+    xajax_BuscarAlumnoInas(xajax.getFormValues('formulario4'));
+  });
+});
+
+$(document).ready(function(){
+  $('#BtnActua').on('click',function(){
+    xajax_UpdateInas(xajax.getFormValues('ModalForm'));
+  });
+});
+
+
+function funcSelect(value) {
+    xajax_showCampoTexto(value);
+}
+
+$.mask.definitions['~']='[VE]';
+ $('#cedula').mask('~-9?9999999');
+
+  function datatable(table){
+$('#'+table).DataTable({
+        "pagingType": "simple_numbers",
+        "language": {
+            "emptyTable"    : "No hay resultado disponibles en la tabla",
+            //"lengthMenu"    : "Mostrar _MENU_",
+            "zeroRecords"   : "No se encontraron resultados para la búsqueda",
+            "info"          : "Mostrando pagina _PAGE_ de _PAGES_ ( _TOTAL_ Alumno(s) )",
+            "infoEmpty"     : "No hay reportes disponibles",
+            "infoFiltered"  : "(Filtrado de _MAX_ Alumnos totales)",
+            "search"        : "Buscar:",
+            "loadingRecords": "Buscando...",
+            "processing"    : "Procesando...",
+            "lengthMenu": 'Mostrar <select>'+
+                '<option value="5">5</option>'+
+                '<option value="10">10</option>'+
+                '<option value="25">30</option>'+
+                '<option value="50">50</option>'+
+                '<option value="-1">Todos</option>'+
+            '</select>',
+            "paginate": {
+            "first"   : "Primero",
+            "last"    : "Ultimo",
+            "next"    : "Siguiente",
+            "previous": "Anterior"
+            }                                                      
+        }
+    });
+}
+
+window.addEventListener('DOMContentLoaded', event => {
+
+    // Toggle the side navigation
+    const sidebarToggle = document.body.querySelector('#sidebarToggle');
+    if (sidebarToggle) {
+        // Uncomment Below to persist sidebar toggle between refreshes
+        // if (localStorage.getItem('sb|sidebar-toggle') === 'true') {
+        //     document.body.classList.toggle('sb-sidenav-toggled');
+        // }
+        sidebarToggle.addEventListener('click', event => {
+            event.preventDefault();
+            document.body.classList.toggle('sb-sidenav-toggled');
+            localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
+        });
+    }
+});
